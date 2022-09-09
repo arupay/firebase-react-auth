@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { MDBContainer } from "mdb-react-ui-kit";
+import "./App.css";
+import { AuthProvider } from "./context/AuthContext";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Login } from "./Components/Login";
+import { Register } from "./Components/Register";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MDBContainer
+      className="d-flex align-items-center justify-content-center bg-dark m-0 p-0"
+      style={{
+        minHeight: "100vh",
+        minWidth: "100vh",
+        backroundImage: "linear-gradient(to right, #051421, #042727)",
+      }}
+    >
+      <Router>
+        <AuthProvider>
+          <Routes>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/register" element={<Register />}></Route>
+          </Routes>
+        </AuthProvider>
+      </Router>
+    </MDBContainer>
   );
 }
 
