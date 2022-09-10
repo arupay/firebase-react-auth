@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
   }
   //log out method
   function logout() {
-    return signOut();
+    return signOut(auth);
   }
 
   //Updating Email

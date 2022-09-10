@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import {
   MDBContainer,
   MDBCard,
@@ -9,26 +11,24 @@ import {
   MDBBtn,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-export const Login = () => {
-  const navigate = useNavigate();
-  const { login } = useAuth();
+function ForgotPassword() {
+  const [error, setError] = useState();
+  const [success, setSuccess] = useState();
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const { forgotPassword } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError();
-    await login(email, password)
+    await forgotPassword(email)
       .then((res) => {
         console.log(res);
-        navigate("/");
+        setSuccess("Check inbox for further instructions");
       })
       .catch((err) => {
-        setError(err.toString());
+        setError(err.message);
       });
   };
   return (
@@ -38,57 +38,52 @@ export const Login = () => {
           <strong
             style={{ fontWeight: "400", color: "#000", marginBottom: "10px" }}
           >
-            Login
+            Recover Your Password
           </strong>
         </MDBCardTitle>
+        {success && (
+          <MDBTypography className="ms-4 me-4" note noteColor="success">
+            <strong>Success:</strong> {success}
+          </MDBTypography>
+        )}
         {error && (
           <MDBTypography className="ms-4 me-4" note noteColor="danger">
-            <strong>Error: </strong> {error}
+            <strong>Error:</strong> {error}
           </MDBTypography>
         )}
         <MDBCardBody>
-          <form onSubmit={handleSubmit} noValidate>
+          <form onSubmit={handleSubmit}>
             <MDBInput
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              type={"email"}
+              type="email"
               label="Enter Your Email"
               size="lg"
               required
             />
-            <MDBInput
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              type={"password"}
-              label="Enter Your Password"
-              size="lg"
-              required
-              className="mt-3"
-            />
             <div className="d-flex align-items-center justify-content-end mt-2">
-              <Link className="me-2" to={"/forget-password"}>
-                Forgot My Password?
-              </Link>
               <MDBBtn
                 type="submit"
                 outline
                 rounded
                 style={{ fontWeight: "600" }}
               >
-                Login
+                Reset Password
               </MDBBtn>
             </div>
           </form>
         </MDBCardBody>
         <MDBCardFooter>
           <div className="d-flex align-items-center justify-content-center">
-            <span className="m-1">New Here?</span>
-            <Link to="/register">
-              <span> Register</span>
+            <span className="m-1">Already A Member?</span>
+            <Link to="/">
+              <span> Profile</span>
             </Link>
           </div>
         </MDBCardFooter>
       </MDBCard>
     </MDBContainer>
   );
-};
+}
+
+export default ForgotPassword;

@@ -6,6 +6,7 @@ import { Login } from "./Components/Login";
 import { Register } from "./Components/Register";
 import { PrivateRoute } from "./Components/PrivateRoute";
 import { Dashboard } from "./Components/Dashboard";
+import ForgotPassword from "./Components/ForgotPassword";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/register" element={<Register />}></Route>
+            <Route path="/forget-password" element={<ForgotPassword />} />
             <Route
               path="/"
               element={
