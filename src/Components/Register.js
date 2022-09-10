@@ -60,16 +60,16 @@ export const Register = () => {
                 rounded
                 style={{ fontWeight: "600" }}
               >
-                Login
+                Register
               </MDBBtn>
             </div>
           </form>
         </MDBCardBody>
         <MDBCardFooter>
           <div className="d-flex align-items-center justify-content-center">
-            <span className="m-1">New Here ?</span>
-            <Link to="/register">
-              <span> Register</span>
+            <span className="m-1">Already A Member?</span>
+            <Link to="/login">
+              <span> Login</span>
             </Link>
           </div>
         </MDBCardFooter>

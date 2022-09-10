@@ -11,7 +11,7 @@ function App() {
       className="d-flex align-items-center justify-content-center bg-dark m-0 p-0"
       style={{
         minHeight: "100vh",
-        minWidth: "100vh",
+        minWidth: "100vw",
         backroundImage: "linear-gradient(to right, #051421, #042727)",
       }}
     >

@@ -45,7 +45,7 @@ export const Login = () => {
             />
             <div className="d-flex align-items-center justify-content-end mt-2">
               <Link className="me-2" to={"/forgot-password"}>
-                Forgot My Password?{" "}
+                Forgot My Password?
               </Link>
               <MDBBtn
                 type="submit"
@@ -60,7 +60,7 @@ export const Login = () => {
         </MDBCardBody>
         <MDBCardFooter>
           <div className="d-flex align-items-center justify-content-center">
-            <span className="m-1">New Here ?</span>
+            <span className="m-1">New Here?</span>
             <Link to="/register">
               <span> Register</span>
             </Link>
