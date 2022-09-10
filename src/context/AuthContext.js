@@ -24,6 +24,7 @@ export const AuthProvider = ({ children }) => {
     const currUser = auth.onAuthStateChanged((authUser) => {
       setUser(authUser);
     });
+    return currUser;
     //This returns the current user that has been authenticated and sets it to state
   }, []);
 

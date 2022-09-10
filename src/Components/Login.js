@@ -9,11 +9,28 @@ import {
   MDBBtn,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export const Login = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const navigate = useNavigate();
+  const { login } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError();
+    await login(email, password)
+      .then((res) => {
+        console.log(res);
+        navigate("/");
+      })
+      .catch((err) => {
+        setError(err.toString());
+      });
+  };
   return (
     <MDBContainer className="d-flex align-items-center justify-content-center">
       <MDBCard style={{ width: "600px" }}>
@@ -24,12 +41,17 @@ export const Login = () => {
             Login
           </strong>
         </MDBCardTitle>
+        {error && (
+          <MDBTypography className="ms-4 me-4" note noteColor="danger">
+            <strong>Error: </strong> {error}
+          </MDBTypography>
+        )}
         <MDBCardBody>
-          <form>
+          <form onSubmit={handleSubmit} autoComplete="off">
             <MDBInput
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              type="email"
+              type={"email"}
               label="Enter Your Email"
               size="lg"
               required
@@ -37,7 +59,7 @@ export const Login = () => {
             <MDBInput
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              type="password"
+              type={"password"}
               label="Enter Your Password"
               size="lg"
               required
