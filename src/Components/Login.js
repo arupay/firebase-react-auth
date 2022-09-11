@@ -57,10 +57,11 @@ export const Login = () => {
               required
             />
             <MDBInput
+              type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              type={"password"}
               label="Enter Your Password"
+              autoComplete="off"
               size="lg"
               required
               className="mt-3"

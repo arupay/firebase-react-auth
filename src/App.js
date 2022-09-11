@@ -7,6 +7,7 @@ import { Register } from "./Components/Register";
 import { PrivateRoute } from "./Components/PrivateRoute";
 import { Dashboard } from "./Components/Dashboard";
 import ForgotPassword from "./Components/ForgotPassword";
+import UpdateProfile from "./Components/UpdateProfile";
 
 function App() {
   return (
@@ -29,6 +30,14 @@ function App() {
               element={
                 <PrivateRoute>
                   <Dashboard />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/update-profile"
+              element={
+                <PrivateRoute>
+                  <UpdateProfile />
                 </PrivateRoute>
               }
             />
